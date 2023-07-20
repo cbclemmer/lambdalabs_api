@@ -11,7 +11,7 @@ def print_run_time(idx: int, total: int, start_time: float):
     print(f'Current Run time #{idx} of {total}: {run_time / 60 // 60}h {(run_time // 60) % 60}m {run_time % 60:.2f}s')
 
 gpu_name = argv[1]
-interval = 5 * 60
+interval = 1 * 60
 
 tries = 0
 start_time = time()
