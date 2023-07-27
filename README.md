@@ -12,9 +12,9 @@ The tools depend on a `config.json` file at the root of the project directory. T
 }
 ```
 `api_key`: api key for lambda labs, you can create by going to [this link](https://cloud.lambdalabs.com/api-keys).  
-`check_interval`: number of minutes to wait when running `check.py`, defaults to 5
-`wait_interval`: number of minutes to wait when running `wait.py`, defaults to 1
-
+`check_interval`: number of minutes to wait when running `check.py`, defaults to 5  
+`wait_interval`: number of minutes to wait when running `wait.py`, defaults to 1  
+  
 ## Tools
 
 ### check.py
