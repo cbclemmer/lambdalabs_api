@@ -1,4 +1,4 @@
-# lambdalabs_api
+# Lambda API Tools
 
 This repository is a collection of tools to use with [lambda labs gpu cloud compute infrastructure](https://lambdalabs.com/).  
 
