@@ -6,10 +6,14 @@ This repository is a collection of tools to use with [lambda labs gpu cloud comp
 The tools depend on a `config.json` file at the root of the project directory. This is an example of the contents.
 ```
 {
-  "api_key": "xxx"
+  "api_key": "xxx",
+  "check_interval": 5,
+  "wait_interval": 1
 }
 ```
-The only property that is needed in this file is `api_key` which you can create by going to [this link](https://cloud.lambdalabs.com/api-keys).  
+`api_key`: api key for lambda labs, you can create by going to [this link](https://cloud.lambdalabs.com/api-keys).  
+`check_interval`: number of minutes to wait when running `check.py`, defaults to 5
+`wait_interval`: number of minutes to wait when running `wait.py`, defaults to 1
 
 ## Tools
 

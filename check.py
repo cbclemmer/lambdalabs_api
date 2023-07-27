@@ -1,12 +1,15 @@
 from time import sleep
-from util import print_avail
+from util import print_avail, get_config
 
-interval = 5 * 60
+config = get_config()
+
+if not 'check_interval' in config:
+    config['check_interval'] = 5
 
 while True:
     try:
         print_avail()
-        sleep(interval)
+        sleep(config['check_interval'] * 60)
     except Exception as e:
         print(e)
         sleep(1)

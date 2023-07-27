@@ -1,7 +1,7 @@
 from sys import argv
 from time import sleep, time
 
-from util import get_avail, launch_inst, print_avail
+from util import get_avail, launch_inst, print_avail, get_config
 
 if len(argv) < 2:
     raise Exception('Usage: python wait.py [gpu_name]')
@@ -11,7 +11,11 @@ def print_run_time(idx: int, total: int, start_time: float):
     print(f'Current Run time #{idx} of {total}: {run_time / 60 // 60}h {(run_time // 60) % 60}m {run_time % 60:.2f}s')
 
 gpu_name = argv[1]
-interval = 1 * 60
+
+config = get_config()
+
+if not 'wait_interval' in config:
+    config['wait_interval'] = 1
 
 tries = 0
 start_time = time()
@@ -24,7 +28,7 @@ while True:
             print_avail(list_data)
             print('No availability')
             print_run_time(tries, 'inf', start_time)
-            sleep(interval)
+            sleep(config['wait_interval'] * 60)
             continue
         launch_data = launch_inst(gpu_name, avail[0]['name'])
         ip = launch_data['ip']

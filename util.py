@@ -1,14 +1,22 @@
+import os
 import requests
 import json
 
-config_file = open('config.json', 'r')
-config = json.loads(config_file.read())
-config_file.close()
+def get_config():
+    if not os.path.exists('config.json'):
+        raise Exception('Could not find config.json file, please create it to use software')
 
-if 'api_key' not in config:
-    raise Exception('no api key')
+    config_file = open('config.json', 'r')
+    config = json.loads(config_file.read())
+    config_file.close()
+
+    if 'api_key' not in config:
+        raise Exception('no api key in config.json')
+
+    return config
 
 def get_avail():
+    config = get_config()
     res = requests.get('https://cloud.lambdalabs.com/api/v1/instance-types', headers={
         "Authorization": f"Basic {config['api_key']}"
     })
@@ -17,6 +25,7 @@ def get_avail():
     return json.loads(res.content.decode())['data']
 
 def launch_inst(gpu_name: str, region_name: str):
+    config = get_config()
     data = get_avail()
     found = False
     for region in data[gpu_name]['regains']['regions_with_capacity_available']:
